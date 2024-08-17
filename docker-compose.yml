@@ -1,0 +1,45 @@
+# version: '3.8'
+services:
+  web:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      redis:
+        condition: service_started
+      db:
+        condition: service_healthy
+        restart: true
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./:/rails/
+    networks:
+      - weather-network
+
+  db:
+    image: postgres:latest
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    env_file:
+      - .env
+    # volumes:
+    #   - "dbdata:/var/lib/postgresql/data/"
+    networks:
+      - weather-network
+
+  redis:
+    image: redis:latest
+    networks:
+      - weather-network
+
+networks:
+  weather-network:
+    driver: bridge
