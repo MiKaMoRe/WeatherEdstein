@@ -7,4 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  
+  get '/weather/current', to: 'weathers#current'
+  get '/weather/historical', to: 'weathers#historical'
+  get '/weather/historical/max', to: 'weathers#historical_max'
+  get '/weather/historical/min', to: 'weathers#historical_min'
+  get '/weather/historical/avg', to: 'weathers#historical_avg'
+  get '/weather/by_time', to: 'weathers#by_time'
 end
