@@ -101,6 +101,8 @@ GEM
     faraday (2.10.1)
       faraday-net_http (>= 2.0, < 3.2)
       logger
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.1.1)
       net-http
     globalid (1.2.1)
@@ -124,6 +126,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.2)
+    multipart-post (2.4.1)
     mutex_m (0.2.0)
     net-http (0.4.1)
       uri
@@ -242,6 +245,8 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (0.13.0)
+    vcr (6.3.0)
+      base64
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -263,6 +268,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   faraday
+  faraday-multipart
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
@@ -271,6 +277,7 @@ DEPENDENCIES
   rspec-rails (~> 6.1.0)
   shoulda-matchers
   tzinfo-data
+  vcr
 
 RUBY VERSION
    ruby 3.1.2p20

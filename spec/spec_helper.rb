@@ -13,6 +13,10 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require 'vcr'
+
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -91,4 +95,16 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/vcr'
+  c.ignore_localhost = true
+  c.configure_rspec_metadata!
+  c.hook_into :faraday
+  # c.debug_logger = $stderr
+
+  c.filter_sensitive_data('<WEATHER_API_KEY>') do
+    ENV.fetch('WEATHER_API_KEY', 'hidden')
+  end
 end
