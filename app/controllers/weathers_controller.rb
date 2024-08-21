@@ -71,7 +71,7 @@ class WeathersController < ApplicationController
   end
 
   def find_temperature
-    Temperature.where(search_params)
+    Temperature.where(search_params).first
   end
 
   def search_params

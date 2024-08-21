@@ -1,10 +1,10 @@
 class CreateTemperatures < ActiveRecord::Migration[7.1]
   def change
     create_table :temperatures do |t|
-      t.integer :metric_value,  null: false
-      t.string :metric_unit,    null: false
-      t.integer :epoch_time,                null: false
-      t.integer :external_location_id,      null: false
+      t.float :metric_value,                null: false, default: 12
+      t.string :metric_unit,                null: false, default: 'C'
+      t.integer :epoch_time,                null: false, default: Time.now.to_i
+      t.integer :external_location_id,      null: false, default: 1
 
       t.timestamps
     end
