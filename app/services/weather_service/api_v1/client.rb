@@ -9,8 +9,6 @@ module WeatherService
 
   module ApiV1
     class Client
-      # include Cacheable
-
       def get_location_key
         url = build_url("/locations/v1/cities/search")
         params = global_params.merge({
@@ -97,6 +95,8 @@ module WeatherService
           raise Exceptions::NotFound.new(message)
         when 500
           raise Exceptions::ExternalServerError.new(message)
+        when 503
+          raise Exceptions::ServiceUnavailable.new(message)
         else
           return response
         end
