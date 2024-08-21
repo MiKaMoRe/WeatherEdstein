@@ -6,6 +6,7 @@ module WeatherService
       class PermissionsDenied < StandardError; end    # 403
       class NotFound < StandardError; end             # 404
       class ExternalServerError < StandardError; end  # 500
+      class ServiceUnavailable < StandardError; end   # 503
     end
   end
 end

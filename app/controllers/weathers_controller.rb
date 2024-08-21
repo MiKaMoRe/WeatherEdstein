@@ -4,6 +4,7 @@ class WeathersController < ApplicationController
   rescue_from 'WeatherService::ApiV1::Exceptions::PermissionsDenied', with: :handle_error
   rescue_from 'WeatherService::ApiV1::Exceptions::NotFound', with: :handle_error
   rescue_from 'WeatherService::ApiV1::Exceptions::ExternalServerError', with: :handle_error
+  rescue_from 'WeatherService::ApiV1::Exceptions::ServiceUnavailable', with: :handle_error
 
   def current
     current_temperature = weather_service.get_current_temperature
